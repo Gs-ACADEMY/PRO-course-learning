@@ -1,0 +1,37 @@
+/* メモ帳（講師の見本） */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", "Noto Sans CJK JP", sans-serif;
+  background: linear-gradient(160deg, #EEF4FF 0%, #F8F5FF 100%);
+  color: #1F2A44;
+}
+.app { width: 100%; max-width: 640px; margin: 0 auto; padding: 40px 20px; }
+h1 { margin: 0 0 4px; font-size: 30px; letter-spacing: .06em; }
+.lead { margin: 0 0 20px; color: #5B6785; font-size: 14px; }
+
+input, button { font: inherit; font-size: 16px; }
+input { min-width: 0; padding: 10px 12px; border: 1px solid #CFD5E3; border-radius: 10px; background: #fff; }
+button {
+  padding: 10px 18px; border: 0; border-radius: 10px; cursor: pointer; font-weight: 700;
+  background: #fff; color: #3D5A98; box-shadow: 0 2px 8px rgba(31, 42, 68, .10);
+}
+button.primary { background: #3D5A98; color: #fff; }
+button:active { transform: translateY(1px); }
+
+.form { display: flex; gap: 8px; padding: 12px; background: #fff; border-radius: 16px; box-shadow: 0 6px 18px rgba(31, 42, 68, .08); }
+.form input { flex: 1; }
+.tools { display: flex; gap: 8px; margin: 14px 0; }
+.tools input { flex: 1; }
+
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.memo {
+  display: flex; justify-content: space-between; gap: 12px; padding: 14px 16px; cursor: pointer;
+  background: #fff; border: 2px solid transparent; border-radius: 12px; box-shadow: 0 3px 10px rgba(31, 42, 68, .06);
+  overflow-wrap: anywhere;
+}
+.memo:hover { border-color: #CFD5E3; }
+.memo.selected { border-color: #E4572E; background: #FFF6F3; }
+.date { flex-shrink: 0; color: #9AA5C0; font-size: 14px; }
+.empty { padding: 28px; text-align: center; color: #9AA5C0; border: 2px dashed #CFD5E3; border-radius: 12px; }

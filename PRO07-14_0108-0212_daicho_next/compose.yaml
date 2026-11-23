@@ -1,0 +1,27 @@
+# 1/22 スライド 9「構成のコード化」：アプリの箱とデータベースの箱を、1 つのファイルで立ち上げる
+#   docker compose up --build        # 2 つの箱が立ち上がる（http://localhost:3000）
+#   docker compose exec app npx prisma db seed   # 初めてのときだけ：配布データと見本のユーザーを入れる
+# 鍵やパスワードはここに書かない。.env から読む（.env はリポジトリに入れない）
+services:
+  app:                # 箱 1：Next.js
+    build: .
+    ports: ["3000:3000"]
+    env_file: .env     # 鍵は環境変数で
+    environment:
+      # 箱の中からは、データベースの箱を「db」という名前で呼ぶ（.env の DATABASE_URL より、こちらが勝つ）
+      DATABASE_URL: postgresql://postgres:${DB_PASSWORD}@db:5432/daicho
+    depends_on:
+      db:
+        condition: service_healthy   # データベースが受け付けられるようになってから動かす
+  db:                 # 箱 2：PostgreSQL
+    image: postgres:18   # 版を固定する（18 から、データの置き場が /var/lib/postgresql に変わった）
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: daicho
+    volumes: ["dbdata:/var/lib/postgresql"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d daicho"]
+      interval: 2s
+      retries: 30
+volumes:
+  dbdata:

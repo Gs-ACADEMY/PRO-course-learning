@@ -1,0 +1,153 @@
+// 案件台帳のデータの形（1/26：社員・担当・工程の表を足した時点。担当者の列は、移して数えてから消す）
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// 案件の状態（6 つから 1 つ）
+enum Status {
+  SURVEY // 現地調査
+  ESTIMATING // 見積中
+  CONTRACTED // 契約
+  IN_PROGRESS // 工事中
+  DONE // 完了
+  INVOICED // 請求済
+}
+
+/// 問い合わせ
+model Inquiry {
+  id        Int       @id @default(autoincrement())
+  name      String // お客さんの名前
+  body      String // 問い合わせの中身
+  createdAt DateTime  @default(now())
+  projects  Project[]
+}
+
+/// 案件
+model Project {
+  id          Int          @id @default(autoincrement())
+  title       String // 件名
+  status      Status       @default(SURVEY)
+  amount      Int? // 見積金額
+  assignee    String? // 担当者（名前の文字）
+  inquiryId   Int? // 問い合わせ番号
+  inquiry     Inquiry?     @relation(fields: [inquiryId], references: [id])
+  updatedAt   DateTime     @updatedAt
+  reports     Report[] // 日報（たくさん）
+  assignments Assignment[] // 担当（1/26）
+  steps       Step[] // 工程（1/26）
+}
+
+/// 日報
+model Report {
+  id        Int      @id @default(autoincrement())
+  date      DateTime // 作業した日
+  workers   Int // 人数
+  note      String // 内容
+  projectId Int // 案件番号
+  project   Project  @relation(fields: [projectId], references: [id])
+  authorId  String? // 書いた人（ログインの表の id。1/12 で足した）
+  author    User?    @relation(fields: [authorId], references: [id])
+}
+
+/// 社員（1/26 で足した）。名前はここ 1 か所に書き、ほかの表からは番号で指す
+model Staff {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique // 名前
+  role        String // 役割（社長・営業・事務・監督・職人）
+  assignments Assignment[]
+}
+
+/// 担当（1/26）：1 行＝「この案件に、この社員」。監督 2 人なら 2 行
+model Assignment {
+  projectId Int
+  staffId   Int
+  project   Project @relation(fields: [projectId], references: [id])
+  staff     Staff   @relation(fields: [staffId], references: [id])
+
+  @@id([projectId, staffId])
+}
+
+/// 工程（1/26）：案件ごとに 1 行ずつ。工程が増えても行を足すだけ
+model Step {
+  id        Int       @id @default(autoincrement())
+  projectId Int
+  project   Project   @relation(fields: [projectId], references: [id])
+  name      String // 工程の名前（解体・下地・仕上げ など）
+  order     Int // 並べる順
+  progress  String    @default("まだ") // まだ／作業中／完了
+  dueDate   DateTime? // 予定日
+}
+
+// ---- ここから下は認証ライブラリ（Better Auth）の表（1/12 で足した） ----
+// 中身はライブラリが使う。役割（role）だけ自分で足している
+
+model User {
+  id            String    @id
+  name          String
+  email         String
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  role          String?   @default("supervisor") // 役割：president／sales／office／supervisor
+  sessions      Session[]
+  accounts      Account[]
+  reports       Report[] // 書いた日報
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
+}

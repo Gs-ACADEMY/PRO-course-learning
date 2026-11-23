@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>税込みと割り勘の計算</title>
+  </head>
+  <body>
+    <main class="app">
+      <h1>税込みと割り勘の計算</h1>
+
+      <section class="card">
+        <h2>税込み</h2>
+        <label>価格（円）<input id="price" type="number" /></label>
+        <button id="tax-calc">計算</button>
+        <p id="tax-result" class="result"></p>
+      </section>
+
+      <section class="card">
+        <h2>割り勘</h2>
+        <label>合計金額（円）<input id="total" type="number" /></label>
+        <label>人数（人）<input id="people" type="number" /></label>
+        <button id="split-calc">計算</button>
+        <p id="split-result" class="result"></p>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

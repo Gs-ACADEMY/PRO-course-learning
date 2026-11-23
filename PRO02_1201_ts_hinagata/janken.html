@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>じゃんけんゲーム</title>
+  <link rel="stylesheet" href="/src/janken.css">
+</head>
+<body>
+  <main class="app">
+    <h1>じゃんけんゲーム</h1>
+    <p class="lead">出す手を選んでください</p>
+
+    <div class="hands">
+      <button class="hand" data-hand="0"><span class="icon">✊</span>グー</button>
+      <button class="hand" data-hand="1"><span class="icon">✌️</span>チョキ</button>
+      <button class="hand" data-hand="2"><span class="icon">✋</span>パー</button>
+    </div>
+
+    <section class="board">
+      <div class="side">
+        <p class="who">あなた</p>
+        <p id="me-icon" class="pick">？</p>
+        <p id="me-name" class="pick-name">&nbsp;</p>
+      </div>
+      <p class="vs">VS</p>
+      <div class="side">
+        <p class="who">あいて</p>
+        <p id="cpu-icon" class="pick">？</p>
+        <p id="cpu-name" class="pick-name">&nbsp;</p>
+      </div>
+    </section>
+
+    <p id="result" class="result">ボタンを押すと勝負します</p>
+
+    <ul class="score">
+      <li>勝ち <b id="win">0</b></li>
+      <li>負け <b id="lose">0</b></li>
+      <li>あいこ <b id="draw">0</b></li>
+    </ul>
+  </main>
+  <!-- janken.js の名前を janken.ts に変えても、この行はそのままで動きます（Vite が .ts を探します） -->
+  <script type="module" src="/src/janken.js"></script>
+</body>
+</html>

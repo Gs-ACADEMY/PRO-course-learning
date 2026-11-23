@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>税込みの計算（Number() で直した版）</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="./">実演 1：JavaScript のまま</a>
+      <a href="./ts.html">実演 2：TypeScript にした版</a>
+      <a href="./fixed.html" aria-current="page">直した版</a>
+    </nav>
+    <main class="app">
+      <p class="file">calc_fixed.ts（Number() で直した版）</p>
+      <h1>税込みの計算</h1>
+      <div class="row">
+        <label for="price">価格</label>
+        <input id="price" type="number" />
+        <button id="calc">計算</button>
+      </div>
+      <p id="result" class="result"></p>
+    </main>
+    <script type="module" src="/src/calc_fixed.ts"></script>
+  </body>
+</html>

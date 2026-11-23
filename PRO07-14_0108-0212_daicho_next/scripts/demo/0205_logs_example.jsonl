@@ -1,0 +1,10 @@
+{"time":"2027-02-05T08:41:17+09:00","level":"info","path":"/api/monthly","status":200,"userId":"E1G6oND6F06AFqLLXvE3rpg79J7pBBX3","message":"2027-02: 0 workers"}
+{"time":"2027-02-05T08:41:17+09:00","level":"info","path":"/api/projects","status":200,"userId":"E1G6oND6F06AFqLLXvE3rpg79J7pBBX3","message":"30 projects (no amount)"}
+{"time":"2027-02-05T08:58:40+09:00","level":"info","path":"/api/monthly","status":200,"userId":"C7LA0PVx7onvnNnHup4EQ8qkNHrYbAun","message":"2027-02: 0 workers"}
+{"time":"2027-02-05T08:58:41+09:00","level":"error","path":"/api/summary","status":500,"userId":"C7LA0PVx7onvnNnHup4EQ8qkNHrYbAun","message":"AI_API_KEY is not set"}
+{"time":"2027-02-05T08:58:41+09:00","level":"info","path":"/api/projects","status":200,"userId":"C7LA0PVx7onvnNnHup4EQ8qkNHrYbAun","message":"30 projects"}
+{"time":"2027-02-05T09:05:22+09:00","level":"info","path":"/api/reports/7","status":200,"userId":"E1G6oND6F06AFqLLXvE3rpg79J7pBBX3","message":"report opened"}
+{"time":"2027-02-05T09:05:29+09:00","level":"warn","path":"/api/reports/8","status":403,"userId":"E1G6oND6F06AFqLLXvE3rpg79J7pBBX3","message":"not the author of this report"}
+{"time":"2027-02-05T09:12:02+09:00","level":"info","path":"/api/monthly","status":200,"userId":"T2HAQ2UoBhEZLpAbGDCPNV3gpKXwTAL8","message":"2027-02: 0 workers"}
+{"time":"2027-02-05T09:12:03+09:00","level":"error","path":"/api/summary","status":500,"userId":"T2HAQ2UoBhEZLpAbGDCPNV3gpKXwTAL8","message":"AI_API_KEY is not set"}
+{"time":"2027-02-05T09:12:03+09:00","level":"info","path":"/api/projects","status":200,"userId":"T2HAQ2UoBhEZLpAbGDCPNV3gpKXwTAL8","message":"30 projects"}

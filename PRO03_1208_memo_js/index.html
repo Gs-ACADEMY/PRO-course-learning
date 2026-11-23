@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>メモ帳</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <h1>メモ帳</h1>
+    <p class="lead">書いて「足す」。一覧のメモを押して選ぶと、「直す」「消す」が使えます。閉じても残ります。</p>
+
+    <div class="form">
+      <input id="input" type="text" placeholder="メモを書く…" aria-label="メモ">
+      <button id="add" class="primary">足す</button>
+    </div>
+    <div class="tools">
+      <button id="edit">直す</button>
+      <button id="del">消す</button>
+      <input id="find" type="search" placeholder="探す…" aria-label="探す">
+    </div>
+
+    <ul id="list" class="list"></ul>
+  </main>
+  <script src="memo.js"></script>
+</body>
+</html>

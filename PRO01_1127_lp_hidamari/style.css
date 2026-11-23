@@ -1,0 +1,97 @@
+/* ひだまり写真館 LP（講師の見本） */
+:root {
+  --cream: #FFF9F0;
+  --cream-2: #FDF1E1;
+  --orange: #F29E4C;
+  --orange-dark: #D9822B;
+  --green: #8DB596;
+  --brown: #4A3B2F;
+  --brown-2: #6E5A4B;
+  --line: #EADBC8;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", "Noto Sans CJK JP", sans-serif;
+  color: var(--brown);
+  background: var(--cream);
+  line-height: 1.8;
+}
+a { color: inherit; text-decoration: none; }
+.inner { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+/* ヘッダー */
+.site-header { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 22px; letter-spacing: .06em; }
+.logo-mark { width: 34px; height: 34px; }
+.nav { display: flex; align-items: center; gap: 28px; font-size: 15px; font-weight: 600; }
+.nav a:hover { color: var(--orange-dark); }
+.nav .nav-cta { background: var(--orange); color: #fff; padding: 8px 18px; border-radius: 999px; }
+
+/* ファーストビュー */
+.hero { padding: 56px 0 64px; background: linear-gradient(180deg, #FFF3E2 0%, var(--cream) 100%); }
+.hero-inner { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; }
+.hero-label { display: inline-block; margin: 0 0 14px; padding: 4px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-size: 14px; font-weight: 600; color: var(--brown-2); }
+.hero h1 { margin: 0 0 18px; font-size: 44px; line-height: 1.4; letter-spacing: .04em; }
+.hero-lead { margin: 0 0 28px; font-size: 17px; color: var(--brown-2); }
+.hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn { display: inline-block; padding: 13px 28px; border-radius: 999px; font-weight: 700; font-size: 16px; border: 2px solid var(--orange); cursor: pointer; font-family: inherit; }
+.btn-primary { background: var(--orange); color: #fff; }
+.btn-primary:hover { background: var(--orange-dark); border-color: var(--orange-dark); }
+.btn-ghost { background: #fff; color: var(--orange-dark); }
+.hero-visual svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 12px 24px rgba(74, 59, 47, .12)); }
+
+/* セクション */
+.section { padding: 64px 0; }
+.section-alt { background: var(--cream-2); }
+.section-title { margin: 0 0 28px; font-size: 28px; text-align: center; letter-spacing: .08em; }
+.section-title::after { content: ""; display: block; width: 48px; height: 4px; margin: 10px auto 0; border-radius: 2px; background: var(--orange); }
+
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 28px 24px; text-align: center; }
+.card-icon { width: 56px; height: 56px; }
+.card h3 { margin: 10px 0 6px; font-size: 20px; }
+.card p { margin: 0; font-size: 15px; color: var(--brown-2); }
+
+.price { width: 100%; max-width: 760px; margin: 0 auto; border-collapse: collapse; background: #fff; border-radius: 14px; overflow: hidden; }
+.price th, .price td { padding: 16px 20px; border-bottom: 1px solid var(--line); text-align: left; font-size: 16px; }
+.price th { width: 32%; background: #FFF6EA; }
+.note { text-align: center; font-size: 14px; color: var(--brown-2); }
+
+.access dl { max-width: 560px; margin: 0 auto; display: grid; grid-template-columns: 120px 1fr; row-gap: 10px; font-size: 16px; }
+.access dt { font-weight: 700; }
+.access dd { margin: 0; }
+
+.contact-lead { text-align: center; margin: 0 0 24px; }
+.contact-form { max-width: 560px; margin: 0 auto; background: #fff; padding: 28px; border-radius: 18px; border: 1px solid var(--line); display: grid; gap: 16px; }
+.contact-form label { display: grid; gap: 6px; font-weight: 600; font-size: 15px; }
+.contact-form input, .contact-form select, .contact-form textarea {
+  font: inherit; font-weight: 400; padding: 10px 12px; border: 1px solid #D9C7B0; border-radius: 10px; background: #FFFCF7; color: var(--brown);
+}
+.contact-form button { justify-self: center; min-width: 200px; }
+
+.site-footer { padding: 24px 0; text-align: center; font-size: 13px; color: var(--brown-2); background: #fff; border-top: 1px solid var(--line); }
+.site-footer p { margin: 0; }
+
+/* スマホの幅（横 375px でも崩れない） */
+@media (max-width: 768px) {
+  .inner { padding: 0 20px; }
+  .header-inner { height: 60px; }
+  .logo { font-size: 18px; }
+  .logo-mark { width: 28px; height: 28px; }
+  .nav a { display: none; }
+  .nav .nav-cta { display: inline-block; font-size: 13px; padding: 6px 14px; }
+  .hero { padding: 32px 0 40px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 24px; }
+  .hero h1 { font-size: 30px; }
+  .hero-lead { font-size: 15px; }
+  .hero-lead br { display: none; }
+  .cards { grid-template-columns: 1fr; }
+  .section { padding: 44px 0; }
+  .section-title { font-size: 23px; }
+  .price th, .price td { display: block; width: 100%; padding: 8px 16px; border: 0; }
+  .price tr { display: block; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .contact-form { padding: 20px; }
+}
