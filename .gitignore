@@ -1,3 +1,11 @@
+# いったん事前動画（VIDEO_*）の資料だけをコミットする。講義の見本（PRO*）は除外。
+/*
+!/.gitignore
+!/README.md
+!/VIDEO_V1_vite/
+!/VIDEO_V2_next/
+!/VIDEO_V4_state/
+
 node_modules/
 .next/
 dist/
